@@ -17,7 +17,7 @@ class OrderController extends Controller
     // hàm hiển thị tất cả đơn hàng của người dùng
     public function index(User $user)
     {
-        $orders = $user->orders; // Gọi quan hệ trong model User
+        $orders = $user->orders()->with('items')->paginate(10); // Gọi quan hệ trong model User
         return view('admin.orders.vieworders', compact('user', 'orders'));
     }
     public function show(Order $order)

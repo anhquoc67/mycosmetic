@@ -41,6 +41,13 @@
         </div>
 
         <div class="form-group">
+            <label for="discount_percent">Giảm giá (%)</label>
+            <input type="number" class="form-control" name="discount_percent" id="discount_percent"
+                value="{{ old('discount_percent', $item->discount_percent) }}" min="0" max="100">
+        </div>
+
+
+        <div class="form-group">
             <label>Hình hiện tại:</label><br>
             <img src="{{ asset('image/products/' . $item->image) }}" alt="{{ $item->name }}" class="preview-img"><br><br>
         </div>

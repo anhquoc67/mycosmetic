@@ -9,8 +9,7 @@
   
     <nav class="header-center" id="navbar">
       <a href="{{ url('/') }}">Home</a>
-      <a href="{{ route('new') }}">New</a>
-      <a href="{{ url('sale') }}">Sale</a>
+      <a href="{{ route('sale') }}">Sale</a>
       <a href="{{ url('products') }}">Products</a>
       <a href="{{ url('about') }}">About Us</a>
       {{-- Link quản trị chỉ hiển thị với admin --}}
@@ -46,7 +45,7 @@
     </nav>
   
     <a href="{{ route('cart.view') }}" class="floating-cart">
-      🛒 <span class="cart-count">{{ count(session('cart', [])) }}</span>
+      🛒 Giỏ hàng (<span id="cart-count">{{ session('cart') ? collect(session('cart'))->sum('quantity') : 0 }}</span>)
     </a>
   
     <a href="#" id="scrollTopBtn" title="Lên đầu trang">∧</a>

@@ -8,266 +8,37 @@
         <img src="{{ asset('image/sp37.png') }}" class="banner-slide" style="width: 100%; display: none;">
     </div>
 
-    <div class="new-products">
-        <h2>-=- Sản Phẩm Mới -=-</h2>
-        <div class="product-grid">
-            <div class="product-item">
-                <img src="{{ asset('image/sp1.png') }}" alt="Sản phẩm 1">
-                <p><strong>Mã SP:</strong> SP001</p>
-                <p><strong>Thương hiệu:</strong> L'Oreal</p>
-                <p><strong>Giá:</strong> 150.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp2.png') }}" alt="Sản phẩm 2">
-                <p><strong>Mã SP:</strong> SP002</p>
-                <p><strong>Thương hiệu:</strong> Innisfree</p>
-                <p><strong>Giá:</strong> 120.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp3.png') }}" alt="Sản phẩm 3">
-                <p><strong>Mã SP:</strong> SP003</p>
-                <p><strong>Thương hiệu:</strong> The Face Shop</p>
-                <p><strong>Giá:</strong> 180.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp4.png') }}" alt="Sản phẩm 4">
-                <p><strong>Mã SP:</strong> SP004</p>
-                <p><strong>Thương hiệu:</strong> Laneige</p>
-                <p><strong>Giá:</strong> 200.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp5.png') }}" alt="Sản phẩm 5">
-                <p><strong>Mã SP:</strong> SP005</p>
-                <p><strong>Thương hiệu:</strong> SK-II</p>
-                <p><strong>Giá:</strong> 350.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp6.png') }}" alt="Sản phẩm 6">
-                <p><strong>Mã SP:</strong> SP006</p>
-                <p><strong>Thương hiệu:</strong> Estee Lauder</p>
-                <p><strong>Giá:</strong> 320.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp7.png') }}" alt="Sản phẩm 7">
-                <p><strong>Mã SP:</strong> SP007</p>
-                <p><strong>Thương hiệu:</strong> Kiehl's</p>
-                <p><strong>Giá:</strong> 250.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp8.png') }}" alt="Sản phẩm 8">
-                <p><strong>Mã SP:</strong> SP008</p>
-                <p><strong>Thương hiệu:</strong> Some By Mi</p>
-                <p><strong>Giá:</strong> 190.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp9.png') }}" alt="Sản phẩm 9">
-                <p><strong>Mã SP:</strong> SP008</p>
-                <p><strong>Thương hiệu:</strong> Some By Mi</p>
-                <p><strong>Giá:</strong> 190.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp10.png') }}" alt="Sản phẩm 10">
-                <p><strong>Mã SP:</strong> SP008</p>
-                <p><strong>Thương hiệu:</strong> Some By Mi</p>
-                <p><strong>Giá:</strong> 190.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp21.png') }}" alt="Sản phẩm 21">
-                <p><strong>Mã SP:</strong> SP008</p>
-                <p><strong>Thương hiệu:</strong> Some By Mi</p>
-                <p><strong>Giá:</strong> 190.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp22.png') }}" alt="Sản phẩm 22">
-                <p><strong>Mã SP:</strong> SP008</p>
-                <p><strong>Thương hiệu:</strong> Some By Mi</p>
-                <p><strong>Giá:</strong> 190.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
+    <div class="container mt-5">
+        <h3 class="mb-4">Sản phẩm mới nhất</h3>
+        <div class="row">
+            @foreach ($products as $product)
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="card h-100 ">
+                        <img src="{{ asset('image/products/' . $product->image) }}" class="card-img-top" style="height: 200px; object-fit: contain;">
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <h5 class="card-title">{{ $product->name }}</h5>
+                            <p class="card-text"><strong>Thương hiệu:</strong> {{ $product->brand }}</p>
+                            <p class="card-text"><strong>Giá:</strong> {{ number_format($product->price, 0, ',', '.') }}₫</p>
+                            <p class="card-text"><strong>Đã bán:</strong> {{ $product->sold }} lượt</p>
+                            <p class="card-text"><small>Mã SP: {{ $product->id }}</small></p>
+                            <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $product->id }}">
+                                <input type="hidden" name="name" value="{{ $product->name }}">
+                                <input type="hidden" name="price" value="{{ $product->price }}">
+                                <input type="hidden" name="image" value="{{ $product->image }}">
+                                <input type="hidden" name="quantity" value="1">
+                                <button class="btn btn-primary btn-add-to-cart" data-id="{{ $product->id }}">
+                                    🛒 Thêm vào giỏ
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
-
-    <div style="text-align: center; margin-top: 30px;">
-        <a href="{{ route('new') }}" class="see-more-button">Xem Thêm</a>
-    </div>
-
-    <div class="sale-products">
-        <h2>❤️Sản Phẩm Sale❤️</h2>
-        <div class="product-grid">
-            <div class="product-item">
-                <img src="{{ asset('image/sp11.png') }}" alt="Sản phẩm 1">
-                <p><strong>Mã SP:</strong> SP001</p>
-                <p><strong>Thương hiệu:</strong> L'Oreal</p>
-                <p><strong>Giá:</strong> 150.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp12.png') }}" alt="Sản phẩm 2">
-                <p><strong>Mã SP:</strong> SP002</p>
-                <p><strong>Thương hiệu:</strong> Innisfree</p>
-                <p><strong>Giá:</strong> 120.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp13.png') }}" alt="Sản phẩm 3">
-                <p><strong>Mã SP:</strong> SP003</p>
-                <p><strong>Thương hiệu:</strong> The Face Shop</p>
-                <p><strong>Giá:</strong> 180.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp14.png') }}" alt="Sản phẩm 4">
-                <p><strong>Mã SP:</strong> SP004</p>
-                <p><strong>Thương hiệu:</strong> Laneige</p>
-                <p><strong>Giá:</strong> 200.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp15.png') }}" alt="Sản phẩm 5">
-                <p><strong>Mã SP:</strong> SP005</p>
-                <p><strong>Thương hiệu:</strong> SK-II</p>
-                <p><strong>Giá:</strong> 350.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp16.png') }}" alt="Sản phẩm 6">
-                <p><strong>Mã SP:</strong> SP006</p>
-                <p><strong>Thương hiệu:</strong> Estee Lauder</p>
-                <p><strong>Giá:</strong> 320.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp17.png') }}" alt="Sản phẩm 7">
-                <p><strong>Mã SP:</strong> SP007</p>
-                <p><strong>Thương hiệu:</strong> Kiehl's</p>
-                <p><strong>Giá:</strong> 250.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp18.png') }}" alt="Sản phẩm 8">
-                <p><strong>Mã SP:</strong> SP008</p>
-                <p><strong>Thương hiệu:</strong> Some By Mi</p>
-                <p><strong>Giá:</strong> 190.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp23.png') }}" alt="Sản phẩm 23">
-                <p><strong>Mã SP:</strong> SP008</p>
-                <p><strong>Thương hiệu:</strong> Some By Mi</p>
-                <p><strong>Giá:</strong> 190.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp24.png') }}" alt="Sản phẩm 24">
-                <p><strong>Mã SP:</strong> SP008</p>
-                <p><strong>Thương hiệu:</strong> Some By Mi</p>
-                <p><strong>Giá:</strong> 190.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp25.png') }}" alt="Sản phẩm 25">
-                <p><strong>Mã SP:</strong> SP008</p>
-                <p><strong>Thương hiệu:</strong> Some By Mi</p>
-                <p><strong>Giá:</strong> 190.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-            <div class="product-item">
-                <img src="{{ asset('image/sp26.png') }}" alt="Sản phẩm 26">
-                <p><strong>Mã SP:</strong> SP008</p>
-                <p><strong>Thương hiệu:</strong> Some By Mi</p>
-                <p><strong>Giá:</strong> 190.000đ</p>
-                <form action="{{ route('cart.add', ['id' => 1]) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    </div>
-    <div style="text-align: center; margin-top: 30px;">
-        <a href="{{ route('sale') }}" class="see-more-button">Xem Thêm</a>
-    </div>
+    
 @endsection
 
 @section('scripts')
@@ -279,8 +50,7 @@
 
         function showSlide(index) {
             slides.forEach((slide, i) => {
-                slide.style.display = i === index ? 'block' : 'none';
-            });
+                slide.style.display = i === index ? 'block' : 'none';});
         }
 
         function nextSlide() {

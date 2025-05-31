@@ -10,8 +10,6 @@
         <a href="{{ route ('admin.products.create') }}" class="btn btn-primary btn-lg create-btn">
             Create New Product
         </a>
-        <a href="{{ route ('sales.create') }}" class="btn btn-success btn-lg create-btn">Create New Sale</a>
-        <a href="{{ route ('hots.create') }}" class="btn btn-danger btn-lg create-btn">Create New Hot</a>
     </div>
     <div class="mt-3 mb-3">
         <form action="">
@@ -26,6 +24,7 @@
                 <th>Product Name</th>
                 <th>Brand</th>
                 <th>Price</th>
+                <th>Giá Sale</th>
                 <th>Lượt mua</th>
                 <th>Action</th>
             </tr>
@@ -37,13 +36,20 @@
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->brand }}</td>
                     <td>{{ number_format($item->price, 0, ',', '.') }} đ</td>
+                    <td>
+                        @if($item->discount_percent && $item->discount_percent > 0)
+                            {{ number_format($item->price * (1 - $item->discount_percent/100), 0, ',', '.') }} đ
+                        @else
+                            ---
+                        @endif
+                    </td>
                     <td>{{ $item->sold }}</td>
                     <td>
                         @if ($item->deleted_at)
                             <span class="badge bg-secondary">Đã ẩn</span>
                             <a href="{{ route('admin.products.restore', $item->id) }}" class="btn btn-sm btn-success">Phục hồi</a>
                         @else
-                            <!-- <a href="{{ route('admin.products.detail', $item->id) }}" class="btn btn-info">Detail</a> -->
+                            <a href="{{ route('admin.products.detail', $item->id) }}" class="btn btn-info">Detail</a>
                             <a href="{{ route('admin.products.edit', $item->id) }}" class="btn btn-warning">Edit</a>
                             <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $item->id }}">
                                 Delete
@@ -56,6 +62,9 @@
             @endforeach
         </tbody>
     </table>
+    <div class="d-flex justify-content-center mt-4">
+        {{ $list->links('pagination::bootstrap-5') }}
+    </div>
     @foreach ($list as $item)
         @if (!$item->deleted_at)
             <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">

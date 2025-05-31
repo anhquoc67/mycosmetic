@@ -14,7 +14,7 @@ class CheckUserActive
         if (Auth::check() && !Auth::user()->is_active) {
             Auth::logout();
             return redirect()->route('login')->withErrors([
-                'email' => 'Tài khoản của bạn đã bị tạm ngưng.',
+                'email' => 'Tài khoản của bạn đã bị tạm ngưng hoặc bị xóa.',
             ]);
         }
 

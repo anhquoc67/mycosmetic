@@ -16,33 +16,43 @@ use App\Mail\OrderConfirmation;
 
 class CartController extends Controller
 {
-    public function add(Request $request, $id)
-{
-    $product = Product::findOrFail($id);
+    public function add(Request $request)
+    {
+        $product = Product::findOrFail($request->id);
+        $quantity = $request->quantity ?? 1;
 
-    $cart = session()->get('cart', []);
+        // TÍNH GIÁ ĐÃ GIẢM (nếu có giảm giá)
+        $finalPrice = $product->price;
+        if ($product->discount_percent && $product->discount_percent > 0) {
+            $finalPrice = $product->price * (1 - $product->discount_percent / 100);
+        }
 
-    if (isset($cart[$id])) {
-        $cart[$id]['quantity'] += 1;
+        $cart = session('cart', []);
+        if (isset($cart[$product->id])) {
+        $cart[$product->id]['quantity'] += $quantity;
     } else {
-        $cart[$id] = [
+        $cart[$product->id] = [
             'id' => $product->id,
             'name' => $product->name,
-            'price' => $product->price,
+            'price' => $finalPrice,
+            'price_goc' => $product->price,
+            'discount_percent' => $product->discount_percent,
             'image' => $product->image,
-            'quantity' => 1
+            'quantity' => $quantity,
         ];
     }
-
-    session()->put('cart', $cart);
-    if (auth()->check()) {
-        Cart::updateOrCreate(
-        ['user_id' => auth()->id(), 'product_id' => $id],
-        ['quantity' => $cart[$id]['quantity']]
-    );
+    session(['cart' => $cart]);
+    // Đếm tổng số sản phẩm hiện tại trong giỏ
+        $cartCount = collect($cart)->sum('quantity');
+        return response()->json([
+            'success' => true,
+            'cart_count' => $cartCount,
+            'message' => 'Đã thêm vào giỏ hàng!'
+        ]);
+        // return redirect()->route('cart.view')->with('success', 'Đã thêm vào giỏ hàng!');
     }
-    return back()->with('message', 'Đã thêm vào giỏ hàng!');
-}
+
+
 
     public function view()
     {
@@ -116,6 +126,15 @@ class CartController extends Controller
 
 public function update(Request $request, $id)
 {
+
+    $quantity = (int) $request->quantity;
+
+    if ($quantity < 1 || $quantity > 10) {
+        return response()->json([
+            'error' => 'Số lượng không hợp lệ (phải từ 1 đến 10)',
+        ], 400);
+    }
+    
     $cart = session()->get('cart', []);
 
     if (isset($cart[$id])) {

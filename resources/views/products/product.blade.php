@@ -15,12 +15,42 @@
                 <div class="card h-100 ">
                     <img src="{{ asset('image/products/' . $product->image) }}" class="card-img-top" style="height: 200px; object-fit: contain;">
                     <div class="card-body d-flex flex-column justify-content-between">
+                        @if ($product->sold >= 5)
+                            <span class="hot-sale-badge animate-badge">
+                                <span class="badge-icon">🔥</span>
+                                Bán chạy
+                            </span>
+                        @endif
+                        @if ($product->discount_percent && $product->discount_percent > 0)
+                            <span class="badge bg-danger position-absolute top-0 start-0 m-2" style="z-index:10;">
+                                SALE -{{ $product->discount_percent }}%
+                            </span>
+                        @endif
                         <h5 class="card-title">{{ $product->name }}</h5>
                         <p class="card-text"><strong>Thương hiệu:</strong> {{ $product->brand }}</p>
-                        <p class="card-text"><strong>Giá:</strong> {{ number_format($product->price, 0, ',', '.') }}₫</p>
+                        <!-- <p class="card-text"><strong>Giá:</strong> {{ number_format($product->price, 0, ',', '.') }}₫</p> -->
+                         @if ($product->discount_percent && $product->discount_percent > 0)
+                            <p class="card-text mb-1">
+                                <span style="text-decoration: line-through; color: #888;">
+                                    {{ number_format($product->price, 0, ',', '.') }}₫
+                                </span>
+                                <span style="font-size: 1.1em; color: #e74c3c; margin-left: 10px; font-weight:bold;">
+                                    {{ number_format($product->price * (1 - $product->discount_percent/100), 0, ',', '.') }}₫
+                                </span>
+                            </p>
+                            <p class="card-text text-danger mb-1"><strong>Giảm giá: {{ $product->discount_percent }}%</strong></p>
+                        @else
+                            <p class="card-text"><strong>Giá:</strong> {{ number_format($product->price, 0, ',', '.') }}₫</p>
+                        @endif
                         <p class="card-text"><strong>Đã bán:</strong> {{ $product->sold }} lượt</p>
                         <p class="card-text"><small>Mã SP: {{ $product->id }}</small></p>
-                        <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                        <form class="add-to-cart-form" data-id="{{ $product->id }}">
+                            @csrf
+                            <input type="hidden" name="quantity" value="1">
+                            <button type="button" class="btn btn-sm btn-primary mt-2 add-to-cart-btn">🛒 Thêm vào giỏ</button>
+                        </form>
+
+                        <!-- <form action="{{ route('cart.add', $product->id) }}" method="POST">
                             @csrf
                             <input type="hidden" name="id" value="{{ $product->id }}">
                             <input type="hidden" name="name" value="{{ $product->name }}">
@@ -28,7 +58,7 @@
                             <input type="hidden" name="image" value="{{ $product->image }}">
                             <input type="hidden" name="quantity" value="1">
                             <button type="submit" class="btn btn-sm btn-primary mt-2">🛒 Thêm vào giỏ</button>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
             </div>
@@ -64,4 +94,47 @@
     @endif
 </div>
 @endsection
-<!-- <button type="submit" class="add-to-cart">🛒 Thêm vào giỏ</button> -->
+
+ @section('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.add-to-cart-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            var form = this.closest('.add-to-cart-form');
+            var id = form.dataset.id;
+            var quantity = form.querySelector('input[name="quantity"]').value;
+            var token = form.querySelector('input[name="_token"]').value;
+
+            fetch("/cart/add/" + id, {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": token,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    id: id,
+                    quantity: quantity
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.success){
+                    // Cập nhật số lượng giỏ trên header (nếu có)
+                    if(document.getElementById('cart-count'))
+                        document.getElementById('cart-count').textContent = data.cart_count;
+                    // Hiện thông báo nhỏ ở góc, hoặc alert (tùy bạn)
+                    showToast(data.message); // hoặc alert(data.message);
+                }
+            });
+        });
+    });
+});
+
+// Ví dụ show toast (nếu muốn popup đẹp hơn, tùy bạn cài thêm thư viện/toast)
+function showToast(msg) {
+    alert(msg);
+}
+</script>
+@endsection
+

@@ -17,7 +17,7 @@ class CosmeticController extends Controller
             $query->where('name', 'like', '%' . trim($request->sname) . '%');
         }
 
-        $ds = $query->get();
+        $ds = $query->paginate(10);
 
         return view('admin.products.index', ['list' => $ds]);
     }
@@ -63,6 +63,7 @@ class CosmeticController extends Controller
             'name' => 'required|string|max:255',
             'brand' => 'required|string|max:100',
             'price' => 'required|numeric|min:0|max:5000000',
+            'discount_percent' => 'nullable|integer|min:0|max:100',
             'picture' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
         ]);
 
@@ -70,10 +71,11 @@ class CosmeticController extends Controller
         $product->name = $request->name;
         $product->brand = $request->brand;
         $product->price = $request->price;
+        $product->discount_percent = $request->discount_percent ?? 0;
 
         if ($request->hasFile('picture')) {
             $imageName = time() . '_' . $request->file('picture')->getClientOriginalName();
-            $request->file('picture')->move(public_path('images'), $imageName);
+            $request->file('picture')->move(public_path('image/products'), $imageName); // Thống nhất đường dẫn
             $product->image = $imageName;
         }
 
@@ -83,12 +85,14 @@ class CosmeticController extends Controller
         return redirect()->route('admin.products.index')->with('success', 'Product updated successfully!');
     }
 
+
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'brand' => 'required|string|max:100',
             'price' => 'required|numeric|min:0|max:5000000',
+            'discount_percent' => 'nullable|integer|min:1|max:100',
             'picture' => 'required|image|mimes:jpg,jpeg,png,webp|max:5120',
         ]);
 
@@ -97,18 +101,20 @@ class CosmeticController extends Controller
 
         if ($request->hasFile('picture')) {
             $imageName = time() . '_' . $request->file('picture')->getClientOriginalName();
-            $request->file('picture')->move(public_path('images'), $imageName);
+            $request->file('picture')->move(public_path('image/products'), $imageName);
         }
 
         $product = new Product();
         $product->name = $data['name'];
         $product->brand = $data['brand'];
         $product->price = $data['price'];
+        $product->discount_percent = $data['discount_percent'] ?? 0; 
         $product->image = $imageName;
         $product->save();
 
         return redirect()->route('admin.products.create')->with('success', 'Product created successfully!');
     }
+
 
     public function restore($id)
     {

@@ -18,6 +18,7 @@ use App\Http\Controllers\UserController as FrontUserController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CosmeticController;
 use App\Http\Controllers\HotController;
+use App\Http\Controllers\HomeController;
 
 
 
@@ -40,15 +41,9 @@ Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.
 //Route đối với user đã đăng nhập để xem hóa đơn
 Route::get('/account', [FrontUserController::class, 'account'])->name('user.account')->middleware('auth');
 Route::get('/account/orders', [FrontUserController::class, 'orders'])->name('user.orders')->middleware('auth');
-// Route::get('/orders/history', [App\Http\Controllers\OrderController::class, 'history'])
-//     ->name('orders.history')
-//     ->middleware('auth');
-Route::get('/account/orders', [FrontUserController::class, 'orders'])
-    ->name('user.orders')   
-    ->middleware('auth');
-Route::get('/account/orders/{id}', [FrontUserController::class, 'viewOrder'])
-    ->name('user.orders.view')
-    ->middleware('auth');
+Route::get('/account/orders/{id}', [FrontUserController::class, 'viewOrder'])->name('user.orders.view')->middleware('auth');
+
+
 
 
 // Route cho admin (CRUD hạn chế - cần quyền)
@@ -111,40 +106,20 @@ Route::get('/checkout/confirm', [CheckoutController::class, 'confirmPayment'])->
 Route::get('/checkout/qrcode', [CheckoutController::class, 'showQRCode'])->name('checkout.qrcode');
 Route::get('/checkout/qr', [CheckoutController::class, 'showQRCode'])->name('checkout.qr');
 Route::get('/checkout/payment-options', [CheckoutController::class, 'paymentOptions'])->name('checkout.payment');
+// Hiển thị trang xác nhận sau khi quét QR (GET)
+Route::get('/checkout/qr-confirm/{order_code}', [CheckoutController::class, 'showQrConfirm'])->name('checkout.qrConfirm');
+// Xác nhận thật sự (POST)
+Route::post('/checkout/qr-confirm/{order_code}', [CheckoutController::class, 'handleQrConfirm'])->name('checkout.qrConfirm.post');
+Route::get('/order/invoice/{order_code}', [CheckoutController::class, 'showInvoice'])->name('order.invoice');
 
 
-// Route::get('user/home', [UserController::class, 'index'])->name('user.home')->middleware('auth');
-
-// Route::middleware(['auth'])->prefix('user')->name('user.home')->group(function () {
-    
-//     // Xem danh sách sản phẩm, hỗ trợ tìm kiếm
-//     Route::get('products', [UserController::class, 'index'])->name('products.index');
-    
-//     // Xem chi tiết sản phẩm
-//     Route::get('products/{id}', [UserController::class, 'show'])->name('products.show');
-    
-//     // Thêm sản phẩm vào giỏ hàng
-//     Route::post('cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
-    
-//     // Xem giỏ hàng
-//     Route::get('cart', [CartController::class, 'index'])->name('cart.index');
-    
-//     // Xóa sản phẩm khỏi giỏ hàng
-//     Route::delete('cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
-    
-//     // Thanh toán đơn hàng
-//     Route::post('checkout', [OrderController::class, 'checkout'])->name('checkout');
-    
-//     // Trang user home (dashboard)
-//     // Route::get('/home', [UserController::class, 'index'])->name('user.home');
-// });
 
 
 // Route sản phẩm mới
 Route::get('/new', [NewController::class, 'index'])->name('new');
 
 // Route sản phẩm sale
-Route::get('/sale', [SaleController::class, 'sale'])->name('sale');
+Route::get('/sale', [SaleController::class, 'index'])->name('sale');
 
 // Route thêm giỏ hàng
 Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
@@ -167,8 +142,7 @@ Route::get('/report/quarterly', [ReportController::class, 'quarterlyReport']);
 Route::get('/report/stock', [ReportController::class, 'stockReport']);
 
 // Route trang chủ
-Route::get('/', function () {
-    return view('home');})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Route Search
 Route::get('/search', function (Request $request) {

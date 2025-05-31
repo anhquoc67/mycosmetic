@@ -8,19 +8,21 @@ use App\Models\Sale;
 
 class SaleController extends Controller
 {
-    public function sale()
-    {
-        $products = Product::latest()->paginate(20);
-        return view('products.sale', compact('products'));
-    }
 
     public function index(Request $request)
     {
-        $ds = isset($request->sname)
-            ? Sale::where("name", "like", "%" . trim($request->sname) . "%")->get()
-            : Sale::all();
+        // $ds = isset($request->sname)
+        //     ? Sale::where("name", "like", "%" . trim($request->sname) . "%")->get()
+        //     : Sale::all();
 
-        return view("sales.index", ["list" => $ds]);
+        // return view("sales.index", ["list" => $ds]);
+        // Lấy các sản phẩm đang có giảm giá
+        $products = Product::where('discount_percent', '>', 0)
+            ->where('is_active', true)
+            ->orderByDesc('discount_percent')
+            ->paginate(12); // Hiển thị 12 sản phẩm mỗi trang (tùy bạn)
+
+        return view('products.sale', compact('products'));
     }
 
     public function delete($id)

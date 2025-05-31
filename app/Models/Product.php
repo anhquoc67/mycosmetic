@@ -17,7 +17,7 @@ class Product extends Model
     protected $primaryKey = 'id';
 
     // Các thuộc tính có thể được gán hàng loạt
-    protected $fillable = ['id', 'name', 'unit', 'price', 'picture', 'description', 'image','brand', 'is_active'];
+    protected $fillable = ['id', 'name', 'unit', 'price','discount_percent', 'picture', 'description', 'image','brand', 'is_active'];
 
     protected $casts = [
         'is_active' => 'boolean',

@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container">
-        <form action="{{ url('/products/store') }}" method="post" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('admin.products.store') }}" enctype="multipart/form-data">
             <h3 class="title">Create New Product</h3>
             @csrf
 
@@ -36,6 +36,12 @@
             <div class="mt-3 mb-3">
                 <label for="price" class="form-label">Price</label>
                 <input type="number" name="price" id="price" class="form-control" min="0" max="5000000" required>
+            </div>
+
+            <div class="mt-3 mb-3">
+                <label for="discount_percent" class="form-label">Discount (%)</label>
+                <input type="number" name="discount_percent" id="discount_percent" class="form-control" min="1" max="100">
+
             </div>
 
             <div class="mt-3 mb-3">

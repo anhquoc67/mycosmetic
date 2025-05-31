@@ -59,6 +59,12 @@
                 @endforeach
             </tbody>
         </table>
+        @if ($orders->hasPages())
+            <div class="d-flex justify-content-center mt-3">
+                {{ $orders->links('pagination::bootstrap-5') }}
+            </div>
+        @endif
+
     @else
         <div class="alert alert-info mt-4">Người dùng này chưa có đơn hàng nào.</div>
     @endif

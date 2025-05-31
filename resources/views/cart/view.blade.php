@@ -24,18 +24,33 @@
             <tbody>
                 @php $total = 0; @endphp
                 @foreach ($cart as $id => $item)
-                    @php $itemTotal = $item['price'] * $item['quantity']; $total += $itemTotal; @endphp
+                    @php 
+                        $itemTotal = $item['price'] * $item['quantity']; 
+                        $total += $itemTotal;                  
+                    @endphp
                     <tr data-id="{{ $id }}">
                         <td data-label="Hình ảnh">
                             <img src="{{ asset('image/products/' . $item['image']) }}" width="60">
                         </td>
                         <td data-label="Tên sản phẩm" class="cartproduct-name">{{ $item['name'] }}</td>
-                        <td data-label="Giá">{{ number_format($item['price'], 0, ',', '.') }}đ</td>
+                        <td data-label="Giá">
+                            @if(isset($item['discount_percent']) && $item['discount_percent'] > 0)
+                                <span style="text-decoration:line-through; color:#888;">
+                                    {{ number_format($item['price_goc'], 0, ',', '.') }}đ
+                                </span>
+                                <span style="color:#e74c3c; font-weight:bold; margin-left:10px;">
+                                    {{ number_format($item['price'], 0, ',', '.') }}đ
+                                </span>
+                                <span class="badge bg-danger ms-2">-{{ $item['discount_percent'] }}%</span>
+                            @else
+                                {{ number_format($item['price'], 0, ',', '.') }}đ
+                            @endif</td>
                         <td data-label="Số lượng">
                             <input type="number"
                                    class="form-control form-control-sm quantity-input"
                                    value="{{ $item['quantity'] }}"
                                    min="1"
+                                   max="10"
                                    data-update-url="{{ route('cart.update', $id) }}"
                                    style="width: 70px;">
                         </td>
@@ -106,6 +121,12 @@ document.addEventListener('DOMContentLoaded', function () {
             const url = this.dataset.updateUrl;
             const quantity = this.value;
             const row = this.closest('tr');
+
+            if (quantity > 10) {
+                alert("⚠️ Bạn chỉ có thể mua tối đa 10 sản phẩm mỗi loại.");
+                this.value = 10;
+                return;
+            }
 
             fetch(url, {
                 method: 'POST',

@@ -15,8 +15,17 @@ class AuthController extends Controller
     public function login(Request $request) {
         $credentials = $request->only('email', 'password');
 
+        // Thêm điều kiện is_active = 1
+        $credentials['is_active'] = true;
+
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('/'); // hoặc dashboard
+            return redirect()->intended('/');
+        }
+
+        // Trường hợp bị tạm ngưng
+        $user = User::where('email', $request->email)->first();
+        if ($user && !$user->is_active) {
+            return back()->withErrors(['email' => 'Tài khoản của bạn đã bị tạm ngưng hoặc bị xoá.']);
         }
 
         return back()->withErrors(['email' => 'Email hoặc mật khẩu sai']);

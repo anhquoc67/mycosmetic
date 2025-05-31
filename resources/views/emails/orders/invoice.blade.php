@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="container">
+    @if(session('message'))
+        <div class="alert alert-success text-center">
+            {{ session('message') }}
+        </div>
+    @endif
     <h2>🧾 Hóa đơn #{{ $order->id }}</h2>
     <p><strong>Mã đơn hàng:</strong> {{ $order->order_code }}</p>
     <p>Khách hàng: {{ $order->user->name }}</p>
