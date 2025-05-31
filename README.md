@@ -1,61 +1,53 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<h1 align="center">💄 MyCosmetic - Online Cosmetic Project (Semester 2 - FPT Aptech)</h1>
+<h3>Tech stack: Laravel, ReactJS, PHP,Bootstrap</h3>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## TEAM MEMBERS
 
-## About Laravel
+1. NGUYỄN ANH QUỐC - T1S2405010 - Project Lead
+2. NGUYỄN TẤN PHÚC - T1S2405006 - Developer
+3. NGUYỄN HOÀNG DŨNG - T5S2309001 - Developer
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 💄 Project Overview: Cosmetic Authentic
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<p><strong>Cosmetic Authentic</strong> is a user-friendly online store for genuine skincare and beauty products. It allows users to easily browse, select, and purchase authentic cosmetics based on their skin type and beauty needs.</p>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+  <h2>📦 Project Structure</h2>
+  <p>The project consists of three main components:</p>
 
-## Learning Laravel
+  <ul>
+    <li><strong>Backend:</strong> PHP Core (REST API) – located in the <span class="folder">Backend/</span> folder</li>
+    <li><strong>Frontend:</strong> ReactJS (User Interface) – located in the <span class="folder">Frontend/</span> folder</li>
+    <li><strong>Database:</strong> MySQL – initialization file: <span class="code">Backend/mycosmetic_db.sql</span></li>
+  </ul>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+  <p>This architecture separates the logic, user interface, and data layers for maintainability and scalability.</p>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 🚀 Installation & Usage Guide
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+<h3>1. Requirements</h3>
+<ul>
+  <li><strong>XAMPP</strong> (or WAMP, Laragon…) – for running Apache and MySQL</li>
+  <li><strong>Node.js + npm</strong> – for running the ReactJS frontend</li>
+  <li><strong>Git</strong> – for cloning the project from GitHub</li>
+</ul>
 
-## Laravel Sponsors
+<h3>2. Clone the Project</h3>
+<p>Open <strong>Command Prompt (CMD)</strong> or <strong>Git Bash</strong>, then run the following commands:</p>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+<pre><code>cd C:\xampp\htdocs
+git clone https://github.com/anhquoc67/mycosmetic
+</code></pre>
 
-### Premium Partners
+<h3>3. Documentation</h3>
+<p>After cloning, you'll find useful resources in the main folder:</p>
+<ul>
+  <li><strong>Installation Guide</strong> – step-by-step setup instructions</li>
+  <li><strong>Project Documentation:</strong> <code>REVIEW_FINAL_GROUP5_mycosmetic</code></li>
+  <li><strong>Video Demonstration:</strong> <a href="https://youtu.be/L5OuuEkstGw" target="_blank">Watch here</a></li>
+</ul>
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+## 🙏 Acknowledgements
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<p>Thank you for your time and interest in <strong>Cosmetic Authentic</strong>!</p>
+<p>We hope this project is useful and brings a positive experience to all users who are passionate about genuine beauty and skincare products.</p>
