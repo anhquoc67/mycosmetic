@@ -15,7 +15,7 @@
       {{-- Link quản trị chỉ hiển thị với admin --}}
       @auth
           @if (Auth::user()->role === 'admin')
-              <a href="{{ route('admin.dashboard') }}">📊 Quản trị</a>
+              <a href="{{ route('admin.dashboard') }}">📊 Admin Dashboard</a>
           @endif
       @endauth
       @auth

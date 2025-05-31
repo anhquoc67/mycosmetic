@@ -31,13 +31,30 @@ class OrderController extends Controller
         return view('admin.orders.showOrders', compact('order', 'province', 'district', 'ward'));
     }
 
-    public function updateStatus(Request $request, Order $order)
+    public function updateStatus(Request $request, $id)
     {
-        $order->delivery_status = $request->delivery_status;
+        $order = Order::findOrFail($id);
+        $currentStatus = $order->delivery_status;
+        $newStatus = $request->delivery_status;
+
+        // Mảng quy định các trạng thái được chuyển tiếp
+        $allowed = [
+            'Đã đặt hàng'   => ['Đang giao hàng'],
+            'Đang giao hàng' => ['Đã giao xong'],
+            'Đã giao xong' => [] // Không chuyển tiếp nữa
+        ];
+
+        // Nếu không nằm trong mảng allowed => báo lỗi
+        if (!isset($allowed[$currentStatus]) || !in_array($newStatus, $allowed[$currentStatus])) {
+            return redirect()->back()->with('error', 'Không thể chuyển trạng thái này!');
+        }
+
+        $order->delivery_status = $newStatus;
         $order->save();
 
-        return back()->with('success', 'Đã cập nhật trạng thái giao hàng!');
+        return redirect()->back()->with('success', 'Cập nhật trạng thái thành công!');
     }
+
 
     public function markAsPaid($id)
     {

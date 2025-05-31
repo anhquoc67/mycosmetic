@@ -31,9 +31,9 @@
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{{ route('admin.users.index') }}">👤 Người dùng</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link text-white" href="{{ route('admin.settings') }}">⚙️ Cài đặt</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <form action="{{ route('logout') }}" method="GET" class="d-inline">
                             @csrf

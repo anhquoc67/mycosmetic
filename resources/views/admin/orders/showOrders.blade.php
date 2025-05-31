@@ -71,10 +71,15 @@
             </div>
             <div class="col-auto">
                 <select class="form-select" name="delivery_status" id="delivery_status">
-                    <option value="Đã đặt hàng" {{ $order->delivery_status === 'Đã đặt hàng' ? 'selected' : '' }}>Đã đặt hàng</option>
-                    <option value="Đang giao hàng" {{ $order->delivery_status === 'Đang giao hàng' ? 'selected' : '' }}>Đang giao hàng</option>
-                    <option value="Đã giao xong" {{ $order->delivery_status === 'Đã giao xong' ? 'selected' : '' }}>Đã giao xong</option>
+                    @if($order->delivery_status === 'Đã đặt hàng')
+                        <option value="Đang giao hàng">Đang giao hàng</option>
+                    @elseif($order->delivery_status === 'Đang giao hàng')
+                        <option value="Đã giao xong">Đã giao xong</option>
+                    @elseif($order->delivery_status === 'Đã giao xong')
+                        <option value="Đã giao xong" selected>Đã giao xong</option>
+                    @endif
                 </select>
+
             </div>
             <div class="col-auto">
                 <button type="submit" class="btn btn-success">✔ Cập nhật</button>

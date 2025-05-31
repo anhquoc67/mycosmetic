@@ -6,7 +6,7 @@
 
     <div class="product-detail" style="display: flex; gap: 20px; margin-top: 30px;">
         <div class="product-image" style="flex: 1;">
-            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" style="width: 100%;">
+            <img src="{{ asset('image/products/' . $product->image) }}" alt="{{ $product->name }}" style="width: 100%;">
         </div>
         <div class="product-info" style="flex: 1;">
             <h3>{{ $product->name }}</h3>
